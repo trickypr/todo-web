@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import styles from '../../styles/AppMain.module.css'
-import defaultStorage from './defaultStorage'
+import defaultStorage from './defaultStorage.json'
 
 import { getStorage, setStorage } from './storage'
 

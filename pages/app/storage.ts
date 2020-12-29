@@ -1,4 +1,4 @@
-import defaultStorage from './defaultStorage'
+import defaultStorage from './defaultStorage.json'
 
 export const notPrerendering = () => typeof window !== "undefined"
 
