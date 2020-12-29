@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Welcome",
+    "color": "#1FB08D",
+    "id": 0,
+    "items": [
+      {
+        "id": 1,
+        "name": "Close me!",
+        "done": false
+      },
+      {
+        "id": 2,
+        "name": "I'm done!",
+        "done": true
+      }
+    ]
+  }
+]
