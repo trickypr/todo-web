@@ -71,6 +71,12 @@ export default function Main() {
               labelText={item.name}
               checked={item.done}
               onChange={() => setItemDone(i)}
+              onTextEdit={(e) => {
+                const newData = data
+                newData[active].items[i].name = e.target.value
+                setData(newData)
+                forceRerender()
+              }}
             />
           ))}
           <AddItem
