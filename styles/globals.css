@@ -1,9 +1,13 @@
 :root {
-  --primary-color: #1FB08D;
+  --primary-color: #1fb08d;
+  --text-light: white;
+  --text-dark: black;
+  --text-dark-faded: rgb(90, 90, 90);
 }
 
 html,
 body {
+  color: var(--text-dark);
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

@@ -1,11 +1,13 @@
-module.exports = {
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/app/',
-        permanent: true
-      }
-    ]
+module.exports = (_, { defaultConfig }) => {
+  return {
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/app/',
+          permanent: true,
+        },
+      ]
+    },
   }
 }

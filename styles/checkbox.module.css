@@ -1,0 +1,77 @@
+.container {
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+
+.checkmark svg {
+  margin: auto;
+  color: white;
+  stroke-width: 4px;
+}
+
+.checkmark svg.show polyline {
+  stroke-dasharray: 22;
+  animation: drawIn 0.2s ease-in-out forwards;
+}
+
+@keyframes drawIn {
+  from {
+    stroke-dashoffset: -22;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.checkmark svg.hidden polyline {
+  stroke-dasharray: 22;
+  animation: drawOut 0.2s ease-in-out forwards;
+}
+
+@keyframes drawOut {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 22;
+  }
+}
+
+.container:hover input ~ .checkmark {
+  background-color: rgba(150, 150, 150, 0.1);
+}
+
+.container input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+}
+
+.container input:checked ~ .text {
+  color: var(--text-dark-faded);
+}

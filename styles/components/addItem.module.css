@@ -1,0 +1,12 @@
+.button {
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  text-align: left;
+  color: var(--text-dark-faded);
+  padding: 2px 8px;
+}
+
+.button svg {
+  stroke-width: 4px;
+}

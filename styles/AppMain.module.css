@@ -66,5 +66,9 @@
 }
 
 .todos {
-  
+  padding: 16px;
+  background-color: #ffffff;
+  height: calc(96% - 32px);
+  color: var(--text-dark);
+  border-radius: 4px;
 }
