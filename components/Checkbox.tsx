@@ -11,12 +11,18 @@ const Checkbox = ({
 }) => (
   <label className={style.container}>
     <input type="checkbox" checked={checked} onChange={onChange} />
-    <ContentEditable
-      html={checked ? `<del>${labelText}</del>` : labelText}
-      onChange={onTextEdit}
-      tagName="div"
-      onClick={(e) => e.preventDefault()}
-    />
+    <div
+      onClick={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+      }}
+    >
+      <ContentEditable
+        html={checked ? `<del>${labelText}</del>` : labelText}
+        onChange={onTextEdit}
+        tagName="div"
+      />
+    </div>
     <span className={style.checkmark}>
       <Check size={10} className={!checked ? style.hidden : style.show} />
     </span>

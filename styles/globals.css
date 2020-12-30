@@ -1,3 +1,5 @@
+@import './fonts/fonts.css';
+
 :root {
   --primary-color: #1fb08d;
   --text-light: white;

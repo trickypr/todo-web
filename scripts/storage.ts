@@ -16,7 +16,8 @@ export const setStorage = (data: List[]) =>
 
 export const nextID = () => {
   let i = Number(localStorage.getItem('do.i')) || 3
-  localStorage.setItem('do.i', String(i++))
+  i += 1
+  localStorage.setItem('do.i', String(i))
   return i
 }
 
