@@ -7,6 +7,7 @@ import { getStorage, List, nextID, setStorage } from 'scripts/storage'
 import Checkbox from 'components/Checkbox'
 import AddItem from 'components/AddItem'
 import ContentEditable from 'react-contenteditable'
+import AddList from './AddList'
 
 export default function Main() {
   const [active, setActive] = useState(0)
@@ -60,6 +61,15 @@ export default function Main() {
             />
           </div>
         ))}
+
+        <AddList
+          onClick={(e) =>
+            setData([
+              ...data,
+              { name: 'New list', color: '#1FB08D', id: nextID(), items: [] },
+            ])
+          }
+        />
       </div>
       <div className={styles.list}>
         <h1>{current.name}</h1>
