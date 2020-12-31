@@ -4,10 +4,9 @@ import styles from 'styles/AppMain.module.css'
 import defaultStorage from 'public/defaultStorage.json'
 
 import { getStorage, List, nextID, setStorage } from 'scripts/storage'
-import Checkbox from 'components/Checkbox'
-import AddItem from 'components/AddItem'
 import ContentEditable from 'react-contenteditable'
 import AddList from './AddList'
+import ListDisplay from './ListDisplay'
 
 export default function Main() {
   const [active, setActive] = useState(0)
@@ -26,13 +25,6 @@ export default function Main() {
 
   if (getStorage() != data && data.length != 0) {
     setStorage(data)
-  }
-
-  const setItemDone = (itemI: number) => {
-    const newData = data
-    newData[active].items[itemI].done = !newData[active].items[itemI].done
-    setData(newData)
-    forceRerender()
   }
 
   return (
@@ -71,38 +63,13 @@ export default function Main() {
           }
         />
       </div>
-      <div className={styles.list}>
-        <h1>{current.name}</h1>
-
-        <div className={styles.todos}>
-          {current.items.map((item, i) => (
-            <Checkbox
-              key={item.id}
-              labelText={item.name}
-              checked={item.done}
-              onChange={() => setItemDone(i)}
-              onTextEdit={(e) => {
-                const newData = data
-                newData[active].items[i].name = e.target.value
-                setData(newData)
-                forceRerender()
-              }}
-            />
-          ))}
-          <AddItem
-            onClick={() => {
-              const newList = data
-              newList[active].items.push({
-                name: 'new',
-                done: false,
-                id: nextID(),
-              })
-              setData(newList)
-              forceRerender()
-            }}
-          />
-        </div>
-      </div>
+      <ListDisplay
+        current={current}
+        data={data}
+        setData={setData}
+        forceRerender={forceRerender}
+        active={active}
+      />
     </div>
   )
 }

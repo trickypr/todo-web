@@ -1,0 +1,23 @@
+.list {
+  margin: 32px;
+  border-radius: 4px;
+  padding: 32px;
+  color: white;
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-rows: min-content auto;
+}
+
+.list h1 {
+  margin: 0;
+  font-weight: 800;
+}
+
+.todos {
+  padding: 16px;
+  background-color: #ffffff;
+  height: 100%;
+  /* height: calc(96% - 32px); */
+  color: var(--text-dark);
+  border-radius: 4px;
+}
