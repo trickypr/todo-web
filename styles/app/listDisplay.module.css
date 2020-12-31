@@ -1,11 +1,14 @@
 .list {
-  margin: 32px;
+  margin: 64px;
   border-radius: 4px;
   padding: 32px;
   color: white;
   background-color: var(--primary-color);
   display: grid;
   grid-template-rows: min-content auto;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25),
+    0px 4px 8px 4px rgba(0, 0, 0, 0.25);
 }
 
 .list h1 {
@@ -13,11 +16,52 @@
   font-weight: 800;
 }
 
+.heading {
+  display: grid;
+  grid-template-columns: auto min-content;
+}
+
+.heading button {
+  height: 100%;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContents {
+  position: absolute;
+  background-color: var(--text-light);
+  color: var(--text-dark);
+  min-width: 400px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 0px 0px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 1;
+  right: 0;
+}
+
+.dropdownContents h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.dropdownContents button {
+  color: var(--text-dark-faded);
+  background-color: rgba(100, 100, 100, 0.1);
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+}
+
 .todos {
   padding: 16px;
   background-color: #ffffff;
   height: 100%;
-  /* height: calc(96% - 32px); */
   color: var(--text-dark);
   border-radius: 4px;
 }

@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import { Edit, Trash } from 'react-feather'
+
 import AddItem from 'components/AddItem'
 import Checkbox from 'components/Checkbox'
 import { nextID } from 'scripts/storage'
@@ -10,6 +14,9 @@ export default function ListDisplay({
   forceRerender,
   active,
 }) {
+  const [dropdownShow, setDropdownShow] = useState(false)
+  const toggleDropdown = () => setDropdownShow(!dropdownShow)
+
   const setItemDone = (itemI: number) => {
     const newData = data
     newData[active].items[itemI].done = !newData[active].items[itemI].done
@@ -19,7 +26,30 @@ export default function ListDisplay({
 
   return (
     <div className={styles.list}>
-      <h1>{current.name}</h1>
+      <div className={styles.heading}>
+        <h1>{current.name}</h1>
+        <div className={styles.dropdown}>
+          <button onClick={toggleDropdown}>
+            <Edit />
+          </button>
+          {dropdownShow && (
+            <div className={styles.dropdownContents}>
+              <h3>Color</h3>
+
+              <button
+                onClick={() => {
+                  let newData = data
+                  newData.splice(active, 1)
+                  setData(newData)
+                  forceRerender()
+                }}
+              >
+                <Trash size={10} /> Delete list
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
 
       <div className={styles.todos}>
         {current.items.map((item, i) => (
