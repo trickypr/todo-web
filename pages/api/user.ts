@@ -1,28 +1,32 @@
-import connectToDb from 'middleware/db'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-const user = async (req, res) => {
+import { dbConnect } from 'scripts/db'
+
+const user = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { db } = await dbConnect()
+
   if (req.method === 'GET') {
     try {
-      const data = await req.db
+      const data = await db
         .collection('productAnalytics')
         .find({ productName: 'Do - web todos' })
         .toArray()
 
       res.status(200).json({ users: data[0].users })
     } catch (err) {
-      res.statusCode(500).json({ error: err.message })
+      res.status(500).json({ error: err.message })
     }
 
     return
   } else if (req.method === 'POST') {
     try {
-      const data = await req.db
+      const data = await db
         .collection('productAnalytics')
         .find({ productName: 'Do - web todos' })
         .toArray()
 
       const newUsers = data[0].users + 1
-      await req.db
+      await db
         .collection('productAnalytics')
         .updateOne(
           { productName: 'Do - web todos' },
@@ -40,4 +44,4 @@ const user = async (req, res) => {
   res.status(405).json({ error: '405 Method Not Allowed' })
 }
 
-export default connectToDb(user)
+export default user
