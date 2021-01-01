@@ -8,13 +8,12 @@ const user = async (req, res) => {
         .find({ productName: 'Do - web todos' })
         .toArray()
 
-      res.statusCode = 200
-      console.log(data[0].users)
-      res.end(String(data[0].users))
+      res.status(200).json({ users: data[0].users })
     } catch (err) {
-      res.statusCode = 502
-      res.end(err.message)
+      res.statusCode(500).json({ error: err.message })
     }
+
+    return
   } else if (req.method === 'POST') {
     try {
       const data = await req.db
@@ -30,16 +29,15 @@ const user = async (req, res) => {
           { $set: { users: newUsers } }
         )
 
-      res.statusCode = 200
-      res.end(String(newUsers))
+      res.status(200).json({ users: newUsers })
     } catch (err) {
-      res.statusCode = 502
-      res.end(err.message)
+      res.status(500).json({ error: err.message })
     }
-  } else {
-    res.statusCode = 404
-    res.end()
+
+    return
   }
+
+  res.status(405).json({ error: '405 Method Not Allowed' })
 }
 
 export default connectToDb(user)
