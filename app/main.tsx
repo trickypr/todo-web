@@ -55,12 +55,13 @@ export default function Main() {
         ))}
 
         <AddList
-          onClick={(e) =>
+          onClick={(e) => {
+            fetch('/api/lists', { method: 'POST' })
             setData([
               ...data,
               { name: 'New list', color: '#1FB08D', id: nextID(), items: [] },
             ])
-          }
+          }}
         />
       </div>
       <ListDisplay

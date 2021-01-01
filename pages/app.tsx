@@ -32,7 +32,7 @@ export default function App() {
             <p>A simple, web todo app that just works.</p>
             <button
               onClick={() => {
-                fetch('/api/user', { method: 'POST' })
+                fetch('/api/users', { method: 'POST' })
                 initStorage()
                 setOnboard(false)
               }}

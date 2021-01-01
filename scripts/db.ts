@@ -23,3 +23,11 @@ export const dbConnect = async () => {
     db: global.mongo.client.db(process.env.DB_NAME),
   }
 }
+
+export const dbGetCollection = async (db: Db) =>
+  (
+    await db
+      .collection('productAnalytics')
+      .find({ productName: 'Do - web todos' })
+      .toArray()
+  )[0]
