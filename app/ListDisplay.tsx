@@ -1,11 +1,12 @@
 import { useState } from 'react'
 
-import { Edit, Trash } from 'react-feather'
+import { Edit, Trash, Check } from 'react-feather'
 
 import AddItem from 'components/AddItem'
 import Checkbox from 'components/Checkbox'
 import { nextID } from 'scripts/storage'
 import styles from 'styles/app/listDisplay.module.css'
+import { colors } from './colors'
 
 export default function ListDisplay({
   current,
@@ -35,6 +36,27 @@ export default function ListDisplay({
           {dropdownShow && (
             <div className={styles.dropdownContents}>
               <h3>Color</h3>
+
+              <div className={styles.selector}>
+                {colors
+                  .map((color) => `#${color}`)
+                  .map((color) => (
+                    <div
+                      key={color}
+                      style={{ backgroundColor: color }}
+                      className={styles.colorSquare}
+                      onClick={() => {
+                        const newData = data
+                        newData[active].color = color
+                        setData(newData)
+                        forceRerender()
+                      }}
+                    >
+                      {color.toLowerCase() ==
+                        data[active].color.toLowerCase() && <Check size={16} />}
+                    </div>
+                  ))}
+              </div>
 
               <button
                 onClick={() => {
