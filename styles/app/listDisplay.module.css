@@ -64,7 +64,7 @@
 
 .todos {
   padding: 16px;
-  background-color: #ffffff;
+  background-color: var(--background);
   height: 100%;
   color: var(--text-dark);
   border-radius: 4px;

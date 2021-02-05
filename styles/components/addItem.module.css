@@ -4,6 +4,7 @@
   border-radius: 4px;
   text-align: left;
   color: var(--text-dark-faded);
+  background: var(--background-faded);
   padding: 2px 8px;
 }
 

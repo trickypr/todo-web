@@ -5,6 +5,7 @@
   border: none;
   border-radius: 4px;
 
+  background: var(--background-faded);
   color: var(--text-dark-faded);
 }
 

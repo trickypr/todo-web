@@ -4,12 +4,25 @@
   --primary-color: #1fb08d;
   --text-light: white;
   --text-dark: black;
+  --background: #ffffff;
+  --background-faded: rgba(0, 0, 0, 0.1);
   --text-dark-faded: rgb(90, 90, 90);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-light: black;
+    --text-dark: white;
+    --background: #272727;
+    --text-dark-faded: rgb(192, 192, 192);
+    --background-faded: rgba(255, 255, 255, 0.1);
+  }
 }
 
 html,
 body {
   color: var(--text-dark);
+  background: var(--background);
   padding: 0;
   margin: 0;
   font-family: 'Nunito', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
