@@ -1,12 +1,18 @@
 .container {
   display: block;
   position: relative;
+  padding: 2px;
   padding-left: 24px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 
   cursor: pointer;
   font-size: 14px;
   user-select: none;
+  border-radius: 4px;
+}
+
+.container:hover {
+  background-color: #f6f5f4;
 }
 
 .container input {
@@ -20,8 +26,8 @@
 .checkmark {
   position: absolute;
   display: grid;
-  top: 0;
-  left: 0;
+  top: 4px;
+  left: 4px;
   height: 16px;
   width: 16px;
 
@@ -44,6 +50,10 @@
 @keyframes drawIn {
   from {
     stroke-dashoffset: -22;
+    opacity: 1;
+  }
+  5% {
+    opacity: 0;
   }
   to {
     stroke-dashoffset: 0;
@@ -59,7 +69,11 @@
   from {
     stroke-dashoffset: 0;
   }
+  90% {
+    opacity: 1;
+  }
   to {
+    opacity: 0;
     stroke-dashoffset: 22;
   }
 }
@@ -74,4 +88,34 @@
 
 .container input:checked ~ .text {
   color: var(--text-dark-faded);
+}
+
+.contextMenu {
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 0px 0px 2px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  border-radius: 4px;
+  left: 50%;
+  padding: 8px;
+  background-color: var(--text-light);
+  color: var(--text-dark);
+  transform: translate(-50%, 0);
+}
+
+.contextMenu div {
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.contextMenu div:hover {
+  background-color: #f6f5f4;
+}
+
+.disabled {
+  color: gray;
+}
+
+.disabled:hover {
+  background: none !important;
 }

@@ -25,6 +25,47 @@ export default function ListDisplay({
     forceRerender()
   }
 
+  const checkbox = (item, i) => (
+    <>
+      <Checkbox
+        key={item.id}
+        index={i}
+        labelText={item.name}
+        checked={item.done}
+        onChange={() => setItemDone(i)}
+        onTextEdit={(e) => {
+          const newData = data
+          newData[active].items[i].name = e.target.value
+          setData(newData)
+          forceRerender()
+        }}
+        onDelete={() => {
+          const newData = data
+          newData[active].items.splice(i, 1)
+          setData(newData)
+          forceRerender()
+        }}
+        indent={() => {
+          const newData = data
+          if (i == 0) return
+
+          newData[active].items[i - 1].items =
+            newData[active].items[i - 1].items || []
+          newData[active].items[i - 1].items.push(newData[active].items[i])
+          newData[active].items.splice(i, 1)
+
+          setData(newData)
+          forceRerender()
+        }}
+      />
+      {item.items && item.items.length != 0 && (
+        <div className={styles.indent}>
+          {item.items.map((item, i) => checkbox(item, i))}
+        </div>
+      )}
+    </>
+  )
+
   return (
     <div className={styles.list}>
       <div className={styles.heading}>
@@ -74,20 +115,7 @@ export default function ListDisplay({
       </div>
 
       <div className={styles.todos}>
-        {current.items.map((item, i) => (
-          <Checkbox
-            key={item.id}
-            labelText={item.name}
-            checked={item.done}
-            onChange={() => setItemDone(i)}
-            onTextEdit={(e) => {
-              const newData = data
-              newData[active].items[i].name = e.target.value
-              setData(newData)
-              forceRerender()
-            }}
-          />
-        ))}
+        {current.items.map((item, i) => checkbox(item, i))}
         <AddItem
           onClick={() => {
             const newList = data

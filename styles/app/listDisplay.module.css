@@ -16,6 +16,10 @@
   font-weight: 800;
 }
 
+.indent {
+  margin-left: 16px;
+}
+
 .heading {
   display: grid;
   grid-template-columns: auto min-content;

@@ -21,13 +21,16 @@ export const nextID = () => {
   return i
 }
 
+export interface ListItem {
+  id: number
+  name: string
+  done: boolean
+  items?: ListItem[]
+}
+
 export interface List {
   color: string
   name: string
   id: number
-  items: Array<{
-    id: number
-    name: string
-    done: boolean
-  }>
+  items: ListItem[]
 }
