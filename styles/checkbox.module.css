@@ -12,7 +12,7 @@
 }
 
 .container:hover {
-  background-color: #f6f5f4;
+  background: var(--background-faded);
 }
 
 .container input {
@@ -109,7 +109,7 @@
 }
 
 .contextMenu div:hover {
-  background-color: #f6f5f4;
+  background: var(--background);
 }
 
 .disabled {
