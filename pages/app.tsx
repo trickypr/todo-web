@@ -1,49 +1,37 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import styles from 'styles/AppMain.module.css'
-import { storageExists, initStorage } from 'scripts/storage'
 
-import Main from 'app/main'
+import styles from 'styles/Loader.module.css'
 
-const isServer = () => typeof window === 'undefined'
+const Welcome = import('./welcome')
 
-function SafeHydrate({ children, className = '' }) {
-  return (
-    <div suppressHydrationWarning className={className}>
-      {isServer() ? null : children}
+let View = () => (
+  <div className={styles.full}>
+    <div className={styles.spinner}>
+      <div className={styles['double-bounce1']}></div>
+      <div className={styles['double-bounce2']}></div>
     </div>
-  )
-}
+  </div>
+)
 
 export default function App() {
-  const [onboard, setOnboard] = useState(!storageExists())
+  const [forceState, setForceState] = useState(false)
+  const forceRerender = () => setForceState(!forceState)
+
+  if (!forceState) {
+    Welcome.then((a) => {
+      View = a.default
+      forceRerender()
+    })
+  }
 
   return (
     <div>
       <Head>
         <title>Do</title>
       </Head>
-      <SafeHydrate className={styles.container}>
-        {onboard ? (
-          <div className={styles.welcomeDialog}>
-            <h1>
-              Welcome to <span className={styles.primaryText}>Do</span>!
-            </h1>
-            <p>A simple, web todo app that just works.</p>
-            <button
-              onClick={() => {
-                fetch('/api/users', { method: 'POST' })
-                initStorage()
-                setOnboard(false)
-              }}
-            >
-              Get started
-            </button>
-          </div>
-        ) : (
-          <Main />
-        )}
-      </SafeHydrate>
+
+      <View />
     </div>
   )
 }
